@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--prim-color);
+}
+
+.logo {
+    user-select: none;
+}
