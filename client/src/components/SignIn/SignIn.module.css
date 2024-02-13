@@ -1,0 +1,22 @@
+.signInContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .gitHubButton {
+    background-color: #ffffff;
+    color: #000000; /* Text color */
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .gitHubLogo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  

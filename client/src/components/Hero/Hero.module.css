@@ -4,7 +4,3 @@
     align-items: center;
     background-color: var(--prim-color);
 }
-
-.logo {
-    user-select: none;
-}

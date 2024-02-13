@@ -1,11 +1,13 @@
 import React from 'react'
-import logo from '../../assets/logo.png'
+import Logo from '../Logo/Logo'
 import style from './Hero.module.css'
+import SignIn from '../SignIn/SignIn'
 
 const Hero = () => {
   return (
     <div className={style.container}> 
-        <img className={style.logo} src={logo} alt='Logo' draggable='false' />
+      <Logo />
+      <SignIn />
     </div>
   )
 }

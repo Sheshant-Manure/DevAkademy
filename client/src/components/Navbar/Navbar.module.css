@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     background-color: var(--prim-color);
+    user-select: none;
 }
 
 .container ul {
@@ -16,9 +17,20 @@ li {
     color: white;
     font-size: 1.25rem;
     font-family:  "Gilroy-Bold", sans-serif;
+    animation: hoverOut 0.3s ease-in forwards;
 }
 
 li:hover {
     cursor: pointer;
-    transform: scale(1.15);
+    animation: hoverIn 0.3s ease-in forwards;
+}
+
+@keyframes hoverIn {
+    0%   {transform: scale(1); opacity: 0.5;}
+    100% {transform: scale(1.15); opacity: 1}
+}
+
+@keyframes hoverOut {
+    0%   {transform: scale(1.15)}
+    100% {transform: scale(1)}
 }
