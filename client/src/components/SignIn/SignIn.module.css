@@ -1,22 +1,24 @@
-.signInContainer {
-    display: flex;
-    align-items: center;
-  }
-  
   .gitHubButton {
     background-color: #ffffff;
-    color: #000000; /* Text color */
+    color: #000000; 
     padding: 10px;
-    border: 1px solid #000000;
+    border: none;
     border-radius: 4px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0 0 10px white;
+    transition: all 0.4s ease;
   }
+
+button.gitHubButton:hover {
+  box-shadow: 0 0 10px black;
+  background-color: black;
+  color: white;
+}
   
-  .gitHubLogo {
-    width: 24px;
-    height: 24px;
+.gitHubLogo {
+    width: 32px;
     margin-right: 8px;
   }
   

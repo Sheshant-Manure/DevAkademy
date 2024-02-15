@@ -4,7 +4,8 @@
     user-select: none;
 }
 
-.container ul {
+.container ul.desktop {
+    position: relative;
     height: 100px;
     list-style: none;
     display: flex;
@@ -13,14 +14,24 @@
     gap: 24px;
 }
 
-li {
+li.logos {
+    position: absolute;
+    left: 20px;
+    top: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+li.desktopli {
     color: white;
     font-size: 1.25rem;
     font-family:  "Gilroy-Bold", sans-serif;
     animation: hoverOut 0.3s ease-in forwards;
 }
 
-li:hover {
+li.desktopli:hover {
     cursor: pointer;
     animation: hoverIn 0.3s ease-in forwards;
 }
@@ -33,4 +44,25 @@ li:hover {
 @keyframes hoverOut {
     0%   {transform: scale(1.15)}
     100% {transform: scale(1)}
+}
+
+div.SignInBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--prim-color);
+    padding: 10px;
+}
+
+.mobileViewMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.mobileViewMenu li img{
+    width: 24px;
+    margin: 20px;
+    padding-top: 5px;
 }
