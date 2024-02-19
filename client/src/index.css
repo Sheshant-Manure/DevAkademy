@@ -13,6 +13,7 @@ html, body {
 
 :root {
     --prim-color: rgb(33, 31, 44);
+    --sec-color: rgb(16, 163, 127);
 }
 
 @font-face {

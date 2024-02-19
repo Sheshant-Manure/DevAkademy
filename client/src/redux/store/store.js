@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import existingUserReducer from '../slices/existingUserSlice'
+import screenWidthReducer from '../slices/screenWidthSlice'
 
 export const store = configureStore({
     reducer: {
-        existingUserReducer
+        screenWidth: screenWidthReducer
     }
 })

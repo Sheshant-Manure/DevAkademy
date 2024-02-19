@@ -3,9 +3,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    padding: 20px;
-    margin-top: 10px;
-    /* background-color: var(--prim-color); */
+    height: 60px;
 }
 
 .fadeIn {
@@ -15,8 +13,4 @@
 
 .fadeIn.show {
     opacity: 1;
-}
-
-quote.fadeIn {
-    font-size: large;
 }

@@ -33,8 +33,13 @@ li.desktopli {
 
 li.desktopli:hover {
     cursor: pointer;
+    color: var(--sec-color);
     animation: hoverIn 0.3s ease-in forwards;
 }
+
+.activeMenuItem {
+    color: var(--sec-color) !important;
+}  
 
 @keyframes hoverIn {
     0%   {transform: scale(1); opacity: 0.5;}
@@ -50,19 +55,16 @@ div.SignInBtn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: var(--prim-color);
+    background-color: transparent;
     padding: 10px;
 }
 
-.mobileViewMenu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
+li.MenuLogo {
+    position: absolute;
+    right: 20px;
+    padding-top: 10px;
 }
 
-.mobileViewMenu li img{
+li.MenuLogo img { 
     width: 24px;
-    margin: 20px;
-    padding-top: 5px;
 }

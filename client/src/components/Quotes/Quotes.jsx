@@ -3,7 +3,8 @@ import style from './Quotes.module.css'
 import { quotations } from './quotations'
 
 const Quotes = () => {
-    const [quote, setQuote] = useState(quotations[0])
+    const [quote, setQuote] = useState("Welcome to DevAcademy")
+    const [showClass, setShowClass] = useState(true)
 
     useEffect(() => {
         let i = 0;
@@ -11,10 +12,9 @@ const Quotes = () => {
             if (i === quotations.length) i = 0
             setQuote(quotations[i])
             i++;
-            const quoteElement = document.querySelector(`.${style.fadeIn}`)
-            quoteElement.classList.add(style.show)
+            setShowClass(true)
             setTimeout(() => {
-                quoteElement.classList.remove(style.show)
+                setShowClass(false)
             }, 4000)
         }, 5000)
         return () => clearInterval(intervalId)
@@ -22,7 +22,7 @@ const Quotes = () => {
 
     return (
         <div className={style.container}>
-            <quote className={style.fadeIn}> &quot; {quote} &quot; </quote>
+            <blockquote className={`${style.fadeIn} ${ showClass ? style.show : ''}`}> &quot; {quote} &quot; </blockquote>
         </div>
     );
 };
