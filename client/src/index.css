@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Gilroy-Regular', sans-serif;
+    /* font-family: 'Gilroy-Regular', sans-serif; */
     overflow-x: hidden;
 }
 
@@ -11,9 +11,14 @@ html, body {
     width: 100%;
 }
 
+::selection {
+    background-color: var(--sec-color);
+    color: var(--prim-color);
+}
+
 :root {
     --prim-color: rgb(33, 31, 44);
-    --sec-color: rgb(16, 163, 127);
+    --sec-color: rgb(16, 163, 127);  /* hex #10a37f*/
 }
 
 @font-face {

@@ -22,7 +22,9 @@ const Navbar = () => {
   const menuItems = ['Home', 'Courses', 'About', 'Contact'];
 
   return (
-    <nav className={style.container}>
+    <>
+    <div className={style.fillerDiv}></div>
+    <nav className={style.container} style={{fontFamily: "Gilroy-Regular, sans-serif"}}>
       <ul className={style.desktop}>
         <li className={style.logos}>
           <img width={'50px'} src={LogoSymbol} alt='Logo Symbol' draggable='false' />
@@ -45,6 +47,7 @@ const Navbar = () => {
         )}
       </ul>
     </nav>
+    </>
   );
 };
 

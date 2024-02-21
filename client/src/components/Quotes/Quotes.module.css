@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--prim-color);
+    font-weight: bold;
     height: 60px;
 }
 

@@ -1,7 +1,15 @@
-.container {
+.fillerDiv {
+    height: 100px;
+}
+
+nav.container {
     width: 100%;
     background-color: var(--prim-color);
     user-select: none;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .container ul.desktop {
@@ -27,7 +35,6 @@ li.logos {
 li.desktopli {
     color: white;
     font-size: 1.25rem;
-    font-family:  "Gilroy-Bold", sans-serif;
     animation: hoverOut 0.3s ease-in forwards;
 }
 

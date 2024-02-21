@@ -22,7 +22,7 @@ const Quotes = () => {
 
     return (
         <div className={style.container}>
-            <blockquote className={`${style.fadeIn} ${ showClass ? style.show : ''}`}> &quot; {quote} &quot; </blockquote>
+            <blockquote className={`${style.fadeIn} ${ showClass ? style.show : ''}`}> &lt; {quote} /&gt; </blockquote>
         </div>
     );
 };
