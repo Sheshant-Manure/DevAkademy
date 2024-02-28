@@ -12,6 +12,10 @@
     z-index: 1;
   }
 
+.gitHubButton b {
+  margin-right: 15px;
+}
+
 button.gitHubButton:hover {
   box-shadow: 0 0 10px black;
   background-color: black;

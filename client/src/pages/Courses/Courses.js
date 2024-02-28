@@ -17,21 +17,29 @@ const Courses = () => {
           <div className={style.box}>
             <div style={{display: 'flex', gap: '20px'}}>
               <div style={{padding: '10px', borderLeft: '4px solid var(--sec-color)'}}><h3>Duration<sup>*</sup></h3><p style={{fontFamily:'Gilroy-Light, sans-serif'}}> 1 week</p></div>
-              <div style={{padding: '10px', borderLeft: '4px solid var(--sec-color)'}}><h3>Price<sup>*</sup></h3><p style={{fontFamily:'Gilroy-Light, sans-serif'}}><s>&#8377;2500/-</s> &#8377;0/-</p></div>
-              <div style={{padding: '10px', borderLeft: '4px solid var(--sec-color)', background: 'linear-gradient(to right, #10a37e56, white )'}}><div className={style.registerBtn}><button><b>Register Now</b></button></div></div>
+              <div style={{padding: '10px', borderLeft: '4px solid var(--sec-color)'}}><h3>Price<sup>*</sup></h3><p style={{fontFamily:'Gilroy-Light, sans-serif'}}><s>&#8377;2500/-</s> &#8377;1/-</p></div>
             </div>
             <h1 className={style.deliverables}>Deliverables</h1>
-            <h2>Basic Plan</h2>
+            <div className={style.plans}>
             <ul style={{fontFamily:'Gilroy-Light, sans-serif'}}>
-              <li>Free live session on 21<sup>st</sup> Feb</li>
-              <li>Roadmap to advance React.js project</li>
+              <h2>Basic Plan</h2>
+              <li>Build an admin dashboard for data visualization.</li>
+              <li>Free live session on 21<sup>st</sup> Feb.</li>
+              <li>Roadmap to advance React.js projects.</li>
             </ul>
-            <h2>Premium</h2>
             <ul style={{fontFamily:'Gilroy-Light, sans-serif'}}>
+              <h2>Premium</h2>
               <li>1:1 Guidance and Mentorship for 7 days</li>
               <li>Project Review</li>
               <li>Referral for placement</li>
             </ul>
+            </div>
+            <div style={{padding: '10px', backgroundColor: '#10a37e56', width: '95%'}}>
+              <div className={style.registerBtn}>
+                <h3>What are you waiting for? Hurry Up! </h3>
+                <button>Register Now</button>
+              </div>
+            </div>
           </div>
 
           <div className={style.box}>

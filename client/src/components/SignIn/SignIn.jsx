@@ -10,7 +10,7 @@ const SignIn = () => {
           src={ GitHubLogo }
           alt="GitHub Logo"
         />
-        <b>Sign in with GitHub</b>
+        <b>Sign In with GitHub</b>
       </button>
   );
 };

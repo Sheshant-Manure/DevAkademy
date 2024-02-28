@@ -1,0 +1,25 @@
+.container {
+    width: 100vw;
+    background-color: var(--prim-color);
+    color: white;
+    font-family: 'Gilroy-Light', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom-right-radius: 60px; 
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+}
+
+div.container div {
+    width: 50%;
+    /* border: 1px solid white; */
+    /* text-align: justify; */
+    margin: 40px;
+    margin-right: 20%;
+}
+
+div.container div p {
+    text-align: justify;
+    letter-spacing: 3px;
+}
