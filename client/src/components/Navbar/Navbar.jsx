@@ -19,7 +19,7 @@ const Navbar = () => {
     };
   }, [dispatch]);
 
-  const menuItems = ['Home', 'Courses', 'About', 'Contact'];
+  const menuItems = ['Home', 'Courses', 'About', 'Blogs'];
 
   return (
     <>
