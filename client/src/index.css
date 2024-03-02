@@ -17,7 +17,7 @@ html, body {
 }
 
 :root {
-    --prim-color: rgb(33, 31, 44);
+    --prim-color: rgb(33, 31, 44);  /* hex #211f2c */
     --sec-color: rgb(16, 163, 127);  /* hex #10a37f*/
 }
 

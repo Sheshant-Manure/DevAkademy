@@ -3,15 +3,22 @@ import style from './SignIn.module.css';
 import GitHubLogo from '../../assets/github.png'
 
 const SignIn = () => {
+
+  const handleGitHubSignIn = () => {
+
+  }
+
   return (
-      <button className={style.gitHubButton}>
-        <img
-          className={style.gitHubLogo}
-          src={ GitHubLogo }
-          alt="GitHub Logo"
-        />
-        <b>Sign In with GitHub</b>
-      </button>
+      <a className={style.SignInLink} href='http://localhost:8080/auth/github'>
+        <button onClick={()=>handleGitHubSignIn} className={style.gitHubButton}>
+          <img
+            className={style.gitHubLogo}
+            src={ GitHubLogo }
+            alt="GitHub Logo"
+          />
+          <b>Sign In With GitHub</b>
+        </button>
+      </a>
   );
 };
 
