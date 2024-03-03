@@ -4,7 +4,7 @@ import GitHubLogo from '../../assets/github.png'
 
 const SignIn = () => {
   return (
-      <a className={style.SignInLink} href='http://localhost:8080/auth/github'>
+      <a className={style.SignInLink} href='https://devakademy.onrender.com//auth/github'>
         <button className={style.gitHubButton}>
           <img
             className={style.gitHubLogo}
