@@ -9,7 +9,7 @@ router.get('/github', passport.authenticate( 'github', { scope: ['profile'] }));
 // If the user allows access to Github data, they are redirected to the following url along with query param
 // that contains a code which can be authenticated to get user data.
 router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
-    res.redirect('htttp://localhost:3000/');
+    res.redirect('http://localhost:3000/')
 })
 
 module.exports = router;

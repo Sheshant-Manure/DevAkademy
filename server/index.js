@@ -1,11 +1,18 @@
 const express = require('express');
 const session = require('express-session')
 const authRoutes = require('./routes/auth-routes');
+const userDataRoutes = require('./routes/userdata-routes');
 const passport = require('passport');
+const cors = require('cors');
 require('./config/database-connection.js')
 require('dotenv').config();
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:3000', // Your client's origin
+  credentials: true, // Allow credentials (cookies)
+}));
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
@@ -15,7 +22,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res)=>res.send( 'Hello World!'));
+app.use('/userdata', userDataRoutes);
 app.use('/auth', authRoutes);
 
 const PORT = process.env.PORT;

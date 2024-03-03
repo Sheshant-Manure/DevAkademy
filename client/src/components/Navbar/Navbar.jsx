@@ -11,7 +11,7 @@ const Navbar = () => {
   const [activeMenuItem, setActiveMenuItem] = useState('Home');
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() => { 
     const handleResize = () => dispatch(updateScreenWidth());
     window.addEventListener('resize', handleResize);
     return () => {
