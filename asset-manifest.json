@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/DevAkademy/static/css/main.f8b13ed5.css",
+    "main.js": "/DevAkademy/static/js/main.ca84145d.js",
+    "static/js/592.599f76a2.chunk.js": "/DevAkademy/static/js/592.599f76a2.chunk.js",
+    "static/media/bubbles.mp4": "/DevAkademy/static/media/bubbles.55436dc24011d3e4d8eb.mp4",
+    "static/media/Gilroy-Light.ttf": "/DevAkademy/static/media/Gilroy-Light.1822a291dd62fe2cca72.ttf",
+    "static/media/Gilroy-Regular.ttf": "/DevAkademy/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
+    "static/media/Gilroy-Medium.ttf": "/DevAkademy/static/media/Gilroy-Medium.1b4da6582f83f45ea039.ttf",
+    "static/media/Gilroy-Bold.ttf": "/DevAkademy/static/media/Gilroy-Bold.ca49f7658c4eaac78b6d.ttf",
+    "static/media/logo.svg": "/DevAkademy/static/media/logo.e5b87f55e7d9834059ba73773d354eb6.svg",
+    "static/media/logosymbol.png": "/DevAkademy/static/media/logosymbol.e6867e0a8b312b6586f3.png",
+    "static/media/logotext.png": "/DevAkademy/static/media/logotext.c3d2049488bfb00df029.png",
+    "index.html": "/DevAkademy/index.html",
+    "main.f8b13ed5.css.map": "/DevAkademy/static/css/main.f8b13ed5.css.map",
+    "main.ca84145d.js.map": "/DevAkademy/static/js/main.ca84145d.js.map",
+    "592.599f76a2.chunk.js.map": "/DevAkademy/static/js/592.599f76a2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8b13ed5.css",
+    "static/js/main.ca84145d.js"
+  ]
+}
