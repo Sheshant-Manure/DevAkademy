@@ -4,7 +4,6 @@ import Logo from '../../assets/logo.svg';
 import About from '../../pages/About/About';
 import LinkedinLogo from '../../assets/linkedin.png'
 import GithubLogo from '../../assets/github.png'
-import SubscribeLogo from '../../assets/subscribe.png'
 import EmailLogo from '../../assets/email.png'
 
 const Footer = () => {
@@ -19,17 +18,13 @@ const Footer = () => {
             </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px', flexDirection:'column', position: 'absolute', left: '30%', top: '50%'}}>
-            <div style={{display: 'flex', alignItems: 'center'}}>
-                <h2 style={{margin: '20px'}}>Get<br/>Latest<br/>Blogposts & Course<br/>Updates!</h2>
-                <form onSubmit={(e)=>e.preventDefault()} className={style.newsletter} style={{margin: '30px'}}>
-                    <input type='text' placeholder='Your Full Name'/><br/>
-                    <input type='email' placeholder='E-mail' /><br/>
-                    <button className={style.subscribe}><img width={'24px'} src={SubscribeLogo} alt='Subscribe' /> Subscribe Newsletter</button>
-                </form>
-            </div>
+            <h2 className={style.newsletter} style={{margin: '20px'}}>
+                Get<br/>Latest<br/>Blogposts & Course<br/>Updates!
+                <a href='http://localhost:8080/newsletter/subscribe' className={style.subscribe}>Subscribe Newsletter</a>
+            </h2>
             <div style={{textAlign: 'center'}}>
-                <h5>{ new Date().getFullYear() } &copy; DevAkademy Pvt Ltd</h5>
-                <small><a style={{color: 'white', textDecoration: 'none'}} href='/terms-of-service'>Terms of Service</a> | <a style={{color: 'white', textDecoration: 'none'}} href='/privacy-policy'>Privacy Policy</a></small>
+                <h5>{ new Date().getFullYear() } &copy; Copyright DevAkademy Pvt Ltd</h5>
+                <small className={style.links}><a href='/terms-of-service'>Terms of Service</a> | <a href='/privacy-policy'>Privacy Policy</a></small>
             </div>
         </div>
         <div className={style.contact}>

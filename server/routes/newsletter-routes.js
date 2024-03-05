@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const newsletterController = require('../controllers/newsletter-subscription');
 
 const checkAuthentication = (req, res, next) => {
     if (req.isAuthenticated()) 
@@ -8,8 +9,7 @@ const checkAuthentication = (req, res, next) => {
      return res.json({ message: 'User is  not authenticated, please sign in to continue!', status: false });
 }
 
-router.get('/', checkAuthentication, (req, res) => {
-    return res.send(req.user);
-});
+router.get('/subscribe', checkAuthentication, newsletterController.subscribe);
+router.get('/unsubscribe', checkAuthentication, newsletterController.unsubscribe);
 
 module.exports = router;

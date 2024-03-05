@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateScreenWidth } from '../../redux/slices/screenWidthSlice';
 
 const Navbar = () => {
+  
   const scrnWidth = useSelector((state) => state.screenWidth.scrnWidth);
   const [activeMenuItem, setActiveMenuItem] = useState('Home');
   const dispatch = useDispatch();
+
+  const user = useSelector((state)=>state.user);
 
   useEffect(() => { 
     const handleResize = () => dispatch(updateScreenWidth());
@@ -45,6 +48,8 @@ const Navbar = () => {
             <img src={MenuLogo} alt='Menu Logo' />
           </li>
         )}
+        { user.isAuthenticated ? <li className={style.profilePic}> <p>{user.userdata.name}</p> <img src={user.userdata.imageURL} alt='Profile' /></li>: null}
+        { user.isAuthenticated ? <li className={style.logout}><a href='http://localhost:8080/logout'>logout</a></li>: null }
       </ul>
     </nav>
     </>

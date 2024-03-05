@@ -34,6 +34,8 @@ div.contact div {
 h5 {
     margin: 5px;
     letter-spacing: 2px;
+    font-family: 'Gilroy-Light', sans-serif;
+    font-weight: 100;
 }
 
 .socials {
@@ -60,29 +62,39 @@ h5 {
     margin-left: 5px;
 }
 
-form.newsletter input{
-    padding: 7px;
-    margin: 7px;
-    border: none;
+h2.newsletter {
+    position: relative;
 }
 
-button.subscribe {
+a.subscribe {
     background-color: var(--prim-color);
-    color: white; 
-    padding: 10px;
+    border-radius: 2px;
     border: 2px solid transparent;
-    cursor: pointer;
-    margin: 5px;
-    width: 95%;
-    display: flex;
-    align-items: center;
+    color: white; 
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: small;
+    position: absolute;
+    top: 0px;
 }
 
-button.subscribe img {
-    margin: 3px;
-}
-
-button.subscribe:hover {
+a.subscribe:hover {
     box-shadow: 0 0 3px white;
     border: 2px solid white;
+}
+
+small.links {
+    color: white;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+small.links a{
+    text-decoration: none;
+    color: white;
+}
+
+small.links a:hover {
+    color: var(--prim-color);
 }
