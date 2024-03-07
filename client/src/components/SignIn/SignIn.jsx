@@ -13,11 +13,8 @@ const SignIn = () => {
         const response = await fetch('http://localhost:8080/userdata', { credentials: 'include' });
         const data = await response.json();
         if(data._id) {
-          console.log('Dispatching setUser ', data);
           dispatch(setUser(data));
         }
-        else
-        console.log(data.message);
       } catch (error) {
         console.error('Error fetching user:', error);
       }

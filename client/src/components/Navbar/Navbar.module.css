@@ -102,14 +102,21 @@ li.profilePic img {
 
 li.logout {
     position: absolute;
+    display: flex;
+    align-items: center;
     right: 110px;
     top: 60px;
+    padding-top: 5px;
 }
 
 li.logout a{
     text-decoration: none;
     color: white;
     font-size: small;
+}
+
+li.logout img {
+    width: 16px;
 }
 
 li.logout a:hover{

@@ -1,13 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Courses.module.css'
 import ReactLogo from '../../assets/ReactLogo.png'
 import LiveLogo from '../../assets/live.png'
 import Calendar from '../../assets/calendar.png'
 import Clock from '../../assets/clock.png'
+import Close from '../../assets/cross.png'
 
 const Courses = () => {
+
+  const [modal, setModal] = useState(false)  
+  const [razorData, setRazorData] = useState({});
+  const toggleModal = () => setModal(!modal);
+
+  const createRazorpayCustomer = async (e) => {
+    e.preventDefault();
+    const response = await fetch('http://localhost:8080/razorpay/customer/create-customer', {
+      credentials: 'include',
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        { 
+          name: `${e.target.fname.value} ${e.target.lname.value}`,
+          contact: e.target.contact.value,
+          email: e.target.email.value,
+          course: e.target.course.value
+        })
+    });
+    const data = await response.json();
+    const customer = { 'customer_id' : data.id }
+    setRazorData((prev)=>({...prev, customer}));
+    console.log(razorData);
+  }
+
   return (
     <div className={style.container}>
+      { modal && (
+            <div className={style.modal}>
+                <div className={style.overlay}>
+                    <div className={style.modalContent}>
+                      <div className={style.row}>
+                        <div className={style.column}>
+                          <form className={style.razorpayForm} onSubmit={createRazorpayCustomer}>
+                              
+                              <h2>Personal Details</h2>
+                              <input type='text' name='fname' placeholder='First Name' />
+                              <input type='text' name='lname' placeholder='Last Name' />
+                              <input type='text' name='contact' placeholder='Phone Number' />
+                              <input type='email' name='email' placeholder='E-mail' />
+                              
+                              <h2>Order details</h2>
+                              <label>Amount</label>
+                              <input className={style.order} type='number' name='amount' value={199.00} readOnly /> 
+                              <input className={style.order} type='text' name='currency' value={'INR'} readOnly /> 
+                              <div className={style.dropNbtn}>
+                              <select name='course'>
+                                <option value={'React Masterclass'}>React Masterclass</option>
+                                <option value={'Node Masterclass'}>Node Masterclass</option>
+                              </select>
+                              <button>Submit</button>
+                              </div>
+                            </form>
+                        </div>
+                        <div className={style.column}></div>
+                      </div>               
+                    </div>
+                    <button className={style.closeModalBtn} onClick={toggleModal}><img src={ Close } alt='Close' /></button>
+                </div>
+            </div>) 
+        }
       <div className={style.course}>
         <h1>Master <span className={style.topic}>React</span></h1>
         <img width={'70px'} src={ReactLogo} alt='React Logo' />
@@ -37,7 +97,7 @@ const Courses = () => {
             <div style={{padding: '10px', backgroundColor: '#10a37e56', width: '95%'}}>
               <div className={style.registerBtn}>
                 <h3>What are you waiting for? Hurry Up! </h3>
-                <button>Register Now</button>
+                <button onClick={toggleModal}>Register Now</button>
               </div>
             </div>
           </div>

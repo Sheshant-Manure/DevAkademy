@@ -3,6 +3,7 @@ import style from './Navbar.module.css';
 import MenuLogo from '../../assets/menu.png';
 import LogoSymbol from '../../assets/logosymbol.png';
 import LogoText from '../../assets/logotext.png';
+import SignoutImg from '../../assets/signout.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateScreenWidth } from '../../redux/slices/screenWidthSlice';
 
@@ -49,7 +50,7 @@ const Navbar = () => {
           </li>
         )}
         { user.isAuthenticated ? <li className={style.profilePic}> <p>{user.userdata.name}</p> <img src={user.userdata.imageURL} alt='Profile' /></li>: null}
-        { user.isAuthenticated ? <li className={style.logout}><a href='http://localhost:8080/logout'>logout</a></li>: null }
+        { user.isAuthenticated ? <li className={style.logout}><img src={SignoutImg} alt='Signout' /><a href='http://localhost:8080/signout'>Sign out</a></li>: null }
       </ul>
     </nav>
     </>
