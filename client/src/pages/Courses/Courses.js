@@ -5,31 +5,89 @@ import LiveLogo from '../../assets/live.png'
 import Calendar from '../../assets/calendar.png'
 import Clock from '../../assets/clock.png'
 import Close from '../../assets/cross.png'
+import ServerURL from '../../config/serverURL'
 
 const Courses = () => {
 
   const [modal, setModal] = useState(false)  
   const [razorData, setRazorData] = useState({});
-  const toggleModal = () => setModal(!modal);
+  const [existingCustomer, setExistingCustomer] = useState(false);
+  const [customer, setCustomer] = useState({})
+  const [QRCode, setQRCode] = useState(false);
+
+  const toggleModal = () => {
+    checkCustomer();
+    setModal(!modal);
+  }
+
+  const checkCustomer = async () => {
+    try{
+        const response = await fetch(`${ ServerURL }/razorpay/customer/check-customer`, { credentials: 'include' });
+        const data = await response.json()
+        setExistingCustomer(data.existingCustomer);
+        setCustomer({
+          id: data.customer.customer.id,
+          name: data.customer.customer.name,
+          contact: data.customer.customer.contact,
+          email: data.customer.customer.email
+        })
+        console.log(customer);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
 
   const createRazorpayCustomer = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:8080/razorpay/customer/create-customer', {
+    await fetch(`${ServerURL}/razorpay/customer/create-customer`, {
       credentials: 'include',
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(
         { 
           name: `${e.target.fname.value} ${e.target.lname.value}`,
-          contact: e.target.contact.value,
+          contact: `(+${e.target.country_code.value}) ${e.target.contact.value}`,
           email: e.target.email.value,
           course: e.target.course.value
         })
     });
-    const data = await response.json();
-    const customer = { 'customer_id' : data.id }
-    setRazorData((prev)=>({...prev, customer}));
-    console.log(razorData);
+    checkCustomer();
+  }
+
+  const createRazorpayOrder = async (e) => {
+    e.preventDefault();
+    const orderResponse = await fetch(`${ServerURL}/razorpay/order/create-order`, {
+      credentials: 'include',
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: e.target.amount.value * 100,
+        currency: e.target.currency.value,
+        receipt: `${Date.now()}${razorData[`customer_id`]}`,
+       })
+    });
+    const orderData = await orderResponse.json();
+    console.log('Order details:', orderData);
+    createQRCode(e);
+  }
+
+  const createQRCode = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`${ ServerURL }/razorpay/qrcode/create-qrcode`, {
+      credentials: 'include',
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+          name: `${ customer.name } - ${ e.target.course.value }`,
+          description: `Payment Fee for ${ e.target.course.value }`,
+          payment_amount: e.target.amount.value * 100,
+          customer_id: customer.id,
+         })
+      });
+      const qrData = await response.json();
+      console.log(qrData);
+      setQRCode(qrData.image_url);
   }
 
   return (
@@ -40,13 +98,26 @@ const Courses = () => {
                     <div className={style.modalContent}>
                       <div className={style.row}>
                         <div className={style.column}>
-                          <form className={style.razorpayForm} onSubmit={createRazorpayCustomer}>
+                          <form className={style.razorpayForm} onSubmit={ !existingCustomer ? createRazorpayCustomer : createRazorpayOrder }>
                               
                               <h2>Personal Details</h2>
-                              <input type='text' name='fname' placeholder='First Name' />
-                              <input type='text' name='lname' placeholder='Last Name' />
-                              <input type='text' name='contact' placeholder='Phone Number' />
-                              <input type='email' name='email' placeholder='E-mail' />
+                              {
+                                existingCustomer ? 
+                                <div className={style.personalDetails}>
+                                  <h4>{ customer.name }</h4>
+                                  <h4>{ customer.contact }</h4>
+                                  <h4>{ customer.email }</h4>
+                                </div>:
+                                <>
+                                <input type='text' name='fname' placeholder='First Name' required />
+                                <input type='text' name='lname' placeholder='Last Name' required />
+                                <div style={{position: 'relative'}}>
+                                  <input style={{position: 'absolute', width: '2rem', textAlign: 'center'}} type='number' name='country_code' value={91} placeholder='91' readOnly />
+                                  <input style={{marginLeft: '2.5rem'}} type='number' name='contact' placeholder='Phone Number' required />
+                                </div>
+                                <input type='email' name='email' placeholder='E-mail' required />
+                                </>
+                              }
                               
                               <h2>Order details</h2>
                               <label>Amount</label>
@@ -57,11 +128,17 @@ const Courses = () => {
                                 <option value={'React Masterclass'}>React Masterclass</option>
                                 <option value={'Node Masterclass'}>Node Masterclass</option>
                               </select>
-                              <button>Submit</button>
+                              <button type='submit'>Buy Now</button>
                               </div>
                             </form>
                         </div>
-                        <div className={style.column}></div>
+                        <div className={style.column}>
+                          <div className={style.QRCode}>
+                          {
+                            QRCode && <img src={ QRCode } alt='QR Code' />
+                          }
+                          </div>
+                        </div>
                       </div>               
                     </div>
                     <button className={style.closeModalBtn} onClick={toggleModal}><img src={ Close } alt='Close' /></button>

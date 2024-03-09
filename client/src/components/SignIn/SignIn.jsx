@@ -3,6 +3,7 @@ import style from './SignIn.module.css';
 import GitHubLogo from '../../assets/github.png'
 import { setUser } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import ServerURL from '../../config/serverURL';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const SignIn = () => {
   useEffect(()=>{
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://localhost:8080/userdata', { credentials: 'include' });
+        const response = await fetch(`${ ServerURL }/userdata`, { credentials: 'include' });
         const data = await response.json();
         if(data._id) {
           dispatch(setUser(data));

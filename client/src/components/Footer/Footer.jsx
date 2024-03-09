@@ -5,6 +5,7 @@ import About from '../../pages/About/About';
 import LinkedinLogo from '../../assets/linkedin.png'
 import GithubLogo from '../../assets/github.png'
 import EmailLogo from '../../assets/email.png'
+import ServerURL from '../../config/serverURL';
 
 const Footer = () => {
   return (
@@ -20,7 +21,7 @@ const Footer = () => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px', flexDirection:'column', position: 'absolute', left: '30%', top: '50%'}}>
             <h2 className={style.newsletter} style={{margin: '20px'}}>
                 Get<br/>Latest<br/>Blogposts & Course<br/>Updates!
-                <a href='http://localhost:8080/newsletter/subscribe' className={style.subscribe}>Subscribe Newsletter</a>
+                <a href={`${ ServerURL }/newsletter/subscribe`} className={style.subscribe}>Subscribe Newsletter</a>
             </h2>
             <div style={{textAlign: 'center'}}>
                 <h5>{ new Date().getFullYear() } &copy; Copyright DevAkademy Pvt Ltd</h5>
