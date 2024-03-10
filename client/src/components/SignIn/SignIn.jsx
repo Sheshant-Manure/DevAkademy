@@ -25,7 +25,7 @@ const SignIn = () => {
   
   return (
       !signedIn ? (
-      <a className={style.SignInLink} href='http://localhost:8080/auth/github'>
+      <a className={style.SignInLink} href={`${ ServerURL }/auth/github`}>
         <button className={style.gitHubButton}>
           <img
             className={style.gitHubLogo}
