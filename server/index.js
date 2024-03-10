@@ -15,7 +15,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: process.env.CLIENT_URL, 
+  origin: 'https://sheshant-manure.github.io/DevAkademy', 
   credentials: true,
 }));
 
