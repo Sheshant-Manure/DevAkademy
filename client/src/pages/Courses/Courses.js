@@ -10,7 +10,6 @@ import ServerURL from '../../config/serverURL'
 const Courses = () => {
 
   const [modal, setModal] = useState(false)  
-  const [razorData, setRazorData] = useState({});
   const [existingCustomer, setExistingCustomer] = useState(false);
   const [customer, setCustomer] = useState({})
   const [QRCode, setQRCode] = useState(false);
@@ -23,7 +22,7 @@ const Courses = () => {
   const checkCustomer = async () => {
     try{
         const response = await fetch(`${ ServerURL }/razorpay/customer/check-customer`, { credentials: 'include' });
-        const data = await response.json()
+        const data = await response.json();
         setExistingCustomer(data.existingCustomer);
         setCustomer({
           id: data.customer.customer.id,
@@ -64,7 +63,7 @@ const Courses = () => {
       body: JSON.stringify({
         amount: e.target.amount.value * 100,
         currency: e.target.currency.value,
-        receipt: `${Date.now()}${razorData[`customer_id`]}`,
+        receipt: `${Date.now()}${customer.id}`,
        })
     });
     const orderData = await orderResponse.json();

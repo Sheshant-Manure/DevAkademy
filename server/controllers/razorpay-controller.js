@@ -1,21 +1,31 @@
 const razorpay = require("../config/razorpay-instance");
-const Razorpay = require('../models/razorpay-schema');
+const RazorpayModel = require('../models/razorpay-schema')
 
 // Customer Controllers
+
+module.exports.checkCustomer = async (req, res) => {
+    try {
+        const customer = await RazorpayModel.findOne({ user_id: req.user._id });
+        if (!customer) res.json({ existingCustomer: false  });
+        else res.json({ existingCustomer: true, customer });
+    } catch (err) {
+        return res.status(500).send(`Internal Server Error${err}`);
+    }
+}
+
 module.exports.createCustomer = async (req, res) => {
     const { name, contact, email, course } = req.body;
-    const response = await razorpay.customers.create({ name, contact, email, notes: [{course}] })
-    return res.send(response);
-
-    // .then((response) => {
-        // if (!response.error) {
-        //     return res.status(201).json({ id: response.id });
-        // } else {
-        //     return res.status(400).send(`An error occured while creating the customer: ${ response.error }`);
-        // }
-    // }, (err) => {
-    //     return res.status(500).send(`Internal Server Error: ${err.message}`);
-    // })
+    try{
+        const response = await razorpay.customers.create({ name, contact, email, notes: { course } });
+        RazorpayModel.create({
+            user_id: req.user._id,
+            customer: response
+        })
+        return res.send(response);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error', status: false });
+    }
 }
 
 module.exports.editCustomer = (req, res) => {
@@ -53,15 +63,11 @@ module.exports.fetchCustomerById = (req, res) => {
     });
 }
 
-
 // Order Controllers
 module.exports.createOrder = (req, res) => {
     const { amount, currency, receipt } = req.body;
-    razorpay.orders.create({
-        'amount': amount * 100,
-        'currency': currency,
-        'receipt': receipt
-    }).then((order) => {
+    razorpay.orders.create({ amount, currency, receipt})
+    .then((order) => {
         return res.status(200).json(order);
     }).catch((error) => {
         console.log("ERROR", error);
@@ -114,19 +120,19 @@ module.exports.updateOrder = (req, res) => {
 
 //Create QR Code
 module.exports.createQRCode = (req, res) => {
-    const { type, name, usage, fixed_amount, payment_amount, description, customer_id } = req.body;
+    const { name, payment_amount, description, customer_id } = req.body;
     const currentTimestamp = Date.now();
-    const close_by = new Date(currentTimestamp + 15 * 60 * 1000); // closing in the next 15 mins
+    const close_by = new Date(currentTimestamp + 15 * 60 * 1000);
 
     razorpay.qrCode.create({
-        type,
+        type: "upi_qr",
         name,
-        usage,
-        fixed_amount,
+        usage: "single_use",
+        fixed_amount: true,
         payment_amount,
         description,
         customer_id,
-        close_by: Math.floor(close_by.getTime() / 1000) // convert to Unix timestamp (in seconds)
+        close_by: Math.floor(close_by.getTime() / 1000)
     })
     .then((response) => {
         return res.status(200).json(response);
