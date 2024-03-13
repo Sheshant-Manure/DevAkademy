@@ -15,7 +15,8 @@ require('./config/database-connection.js')
 require('dotenv').config();
 
 const app = express();
-app.use(cors({ 
+app.use(cors({
+  origin: `${ process.env.CLIENT_URL }`, 
   credentials: true,
 }));
 
@@ -24,7 +25,11 @@ app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    sameSite: 'none',
+    secure: true
+  }
 }));
 
 app.use(passport.initialize());
