@@ -15,8 +15,10 @@ require('./config/database-connection.js')
 require('dotenv').config();
 
 const app = express();
+
+const allowedOrigins = [ `${ process.env.CLIENT_URL }`, 'https://sheshant-manure.github.io/DevAkademy', 'https://sheshant-manure.github.io' ]
 app.use(cors({
-  origin: `${ process.env.CLIENT_URL }`, 
+  origin: allowedOrigins, 
   credentials: true,
 }));
 
@@ -26,10 +28,6 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
-  cookie: {
-    sameSite: 'none',
-    secure: true
-  }
 }));
 
 app.use(passport.initialize());
