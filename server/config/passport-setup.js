@@ -14,7 +14,7 @@ passport.use(
             const currentUser = await User.findOne({ 'githubId': profile.id });
 
             if (currentUser) {
-                // User already exists, log them in
+                // User already exists, log them in 
                 return done(null, currentUser);
             } else {
                 // User doesn't exist, create a new user

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-require('../config/passport-setup.js');
 require('dotenv').config();
 
 // This route will open a GitHub consent form where user will enter credentials and allow  access to their data on Github

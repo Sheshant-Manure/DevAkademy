@@ -9,6 +9,7 @@ const razorpayRoutes = require('./routes/razorpay-routes.js');
 const { signOut } = require('./controllers/signout');
 
 const passport = require('passport');
+require('./config/passport-setup.js');
 const cors = require('cors');
 require('./config/database-connection.js')
 require('dotenv').config();
