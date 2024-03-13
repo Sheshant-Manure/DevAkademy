@@ -1,5 +1,5 @@
 const express = require('express');
-const session = require('cookie-session');
+const session = require('express-session')
 
 // Routes
 const authRoutes = require('./routes/auth-routes');
@@ -15,19 +15,16 @@ require('./config/database-connection.js')
 require('dotenv').config();
 
 const app = express();
-app.use(cors({
-  origin: `${ process.env.CLIENT_URL }`, 
+app.use(cors({ 
   credentials: true,
 }));
 
 app.use(express.json());
 
 app.use(session({
-  name: 'session',
-  keys: [process.env.SESSION_SECRET],
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  sameSite: 'none', 
-  secure: true
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use(passport.initialize());
