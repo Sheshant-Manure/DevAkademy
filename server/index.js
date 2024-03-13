@@ -1,5 +1,5 @@
 const express = require('express');
-const session = require('express-session')
+const session = require('cookie-session');
 
 // Routes
 const authRoutes = require('./routes/auth-routes');
@@ -23,9 +23,11 @@ app.use(cors({
 app.use(express.json());
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true
+  name: 'session',
+  keys: [process.env.SESSION_SECRET],
+  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  sameSite: 'none', 
+  secure: true
 }));
 
 app.use(passport.initialize());
