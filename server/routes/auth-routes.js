@@ -4,7 +4,7 @@ const passport = require('passport');
 require('dotenv').config();
 
 const logOrigin = (req, res, next) => {
-    console.log(req.headers.host);
+    console.log(req.headers);
     next();
 }
 
