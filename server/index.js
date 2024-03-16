@@ -16,19 +16,24 @@ require('dotenv').config();
 
 const app = express();
 
-const allowedOrigins = [ `${ process.env.CLIENT_URL }`, 'https://sheshant-manure.github.io/DevAkademy', 'https://sheshant-manure.github.io' ]
+app.use(express.json());
+
 app.use(cors({
-  origin: allowedOrigins, 
+  origin: `${ process.env.CLIENT_URL }`, 
   credentials: true,
 }));
 
-app.use(express.json());
-
 app.use(session({
+  name: 'GitHubConnect.sid',
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  // cookie: { secure: true, sameSite: 'none' },
+  cookie: {
+    domain: process.env.COOKIE_DOMAIN,
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: true,
+    httpOnly: true,
+  }
 }));
 
 app.use(passport.initialize());
