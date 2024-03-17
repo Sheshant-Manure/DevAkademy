@@ -9,7 +9,6 @@ import ServerURL from '../../config/serverURL';
 const SignIn = () => {
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.isAuthenticated);
-  const  userData = useSelector((state) => state.user.userdata);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -22,9 +21,7 @@ const SignIn = () => {
       }
     };
     fetchUser();
-    console.log(signedIn)
-    console.log(userData);
-  }, [dispatch, signedIn, userData]);
+  }, [dispatch]);
 
   return !signedIn ? (
     <a className={style.SignInLink} href={`${ServerURL}/auth/github`}>
