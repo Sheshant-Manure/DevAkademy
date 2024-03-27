@@ -23,22 +23,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use((req, res, next) => {
-  if (req.csrfToken) {
-      res.cookie(
-          "XSRF-TOKEN", 
-          req.csrfToken(),
-          {
-              secure: true, 
-              httpOnly: true, 
-              sameSite: 'none',
-              domain: process.env.COOKIE_DOMAIN
-          }
-      );
-  }
-  next();
-});
-
 app.use(session({
   name: 'GitHubConnect.sid',
   secret: process.env.SESSION_SECRET,
@@ -57,6 +41,22 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
   next();
 })
+
+app.use((req, res, next) => {
+  if (req.csrfToken) {
+      res.cookie(
+          "XSRF-TOKEN", 
+          req.csrfToken(),
+          {
+              secure: false, 
+              httpOnly: true, 
+              sameSite: 'none',
+              domain: process.env.COOKIE_DOMAIN
+          }
+      );
+  }
+  next();
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
