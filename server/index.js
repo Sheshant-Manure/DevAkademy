@@ -31,7 +31,7 @@ app.use((req, res, next) => {
           {
               secure: true, 
               httpOnly: true, 
-              sameSite: 'None',
+              sameSite: 'none',
               domain: process.env.COOKIE_DOMAIN
           }
       );
@@ -43,14 +43,14 @@ app.use(session({
   name: 'GitHubConnect.sid',
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false,
-  cookie: {
-    domain: process.env.COOKIE_DOMAIN,
-    maxAge: 1000 * 60 * 60 * 24,
-    sameSite: 'None',
-    secure: true,
-    httpOnly: true,
-  }
+  saveUninitialized: false
+  // cookie: {
+  //   domain: process.env.COOKIE_DOMAIN,
+  //   maxAge: 1000 * 60 * 60 * 24,
+  //   sameSite: 'none',
+  //   secure: true,
+  //   httpOnly: true,
+  // }
 }));
 
 app.use((req, res, next) => {
