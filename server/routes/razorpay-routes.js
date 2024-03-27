@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const razorpayController = require('../controllers/razorpay-controller');
-const checkAuthentication = require('./middleware');
+const { checkAuthentication } = require('./middleware');
 
 router.get('/customer/check-customer', checkAuthentication, razorpayController.checkCustomer);
 router.post('/customer/create-customer', checkAuthentication, razorpayController.createCustomer);

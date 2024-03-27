@@ -23,6 +23,22 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use((req, res, next) => {
+  if (req.csrfToken) {
+      res.cookie(
+          "XSRF-TOKEN", 
+          req.csrfToken(),
+          {
+              secure: true, 
+              httpOnly: true, 
+              sameSite: 'None',
+              domain: process.env.COOKIE_DOMAIN
+          }
+      );
+  }
+  next();
+});
+
 app.use(session({
   name: 'GitHubConnect.sid',
   secret: process.env.SESSION_SECRET,
@@ -31,7 +47,7 @@ app.use(session({
   cookie: {
     domain: process.env.COOKIE_DOMAIN,
     maxAge: 1000 * 60 * 60 * 24,
-    secure: true,
+    secure: false,
     httpOnly: true,
   }
 }));
