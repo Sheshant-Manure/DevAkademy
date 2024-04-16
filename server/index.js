@@ -27,36 +27,19 @@ app.use(session({
   name: 'GitHubConnect.sid',
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
-  // cookie: {
-  //   domain: process.env.COOKIE_DOMAIN,
-  //   maxAge: 1000 * 60 * 60 * 24,
-  //   sameSite: 'none',
-  //   secure: true,
-  //   httpOnly: true,
-  // }
+  saveUninitialized: false,
+  cookie: {
+    domain: process.env.COOKIE_DOMAIN,
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: 'none',
+    secure: true
+  }
 }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
   next();
 })
-
-app.use((req, res, next) => {
-  if (req.csrfToken) {
-      res.cookie(
-          "XSRF-TOKEN", 
-          req.csrfToken(),
-          {
-              secure: false, 
-              httpOnly: true, 
-              sameSite: 'none',
-              domain: process.env.COOKIE_DOMAIN
-          }
-      );
-  }
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
