@@ -13,7 +13,8 @@ const SignIn = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(`${ServerURL}/userdata`, { withCredentials: true });
-        if (response.data._id) {
+        console.log(response.data);
+        if (response.data.id) {
           dispatch(setUser(response.data));
         }
       } catch (error) {

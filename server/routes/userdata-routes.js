@@ -1,11 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const checkAuthentication = (req, res, next) => {
-    if (req.isAuthenticated()) 
+    const authToken = req.cookies.authToken;
+    if (!authToken) {
+        return res.status(401).json({ message: 'Unauthorized: Missing authToken cookie' });
+    }
+    jwt.verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Unauthorized: Invalid authToken cookie' });
+        }
+        req.user = decoded;
         next();
-    else 
-     return res.json({ message: 'User is  not authenticated, please sign in to continue!', status: false });
+    });
 }
 
 router.get('/', checkAuthentication, (req, res) => {
