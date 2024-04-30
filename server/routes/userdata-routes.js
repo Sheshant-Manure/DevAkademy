@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const checkAuthentication = (req, res, next) => {
-    const authToken = req.cookies.authToken;
+    const authToken = req.query.token;
     if (!authToken) {
-        return res.status(401).json({ message: 'Unauthorized: Missing authToken cookie' });
+        return res.status(401).json({ message: 'Unauthorized: Missing authToken' });
     }
     jwt.verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ message: 'Unauthorized: Invalid authToken cookie' });
+            return res.status(401).json({ message: 'Unauthorized: Invalid authToken' });
         }
         req.user = decoded;
         next();
@@ -18,7 +18,7 @@ const checkAuthentication = (req, res, next) => {
 }
 
 router.get('/', checkAuthentication, (req, res) => {
-    return res.send(req.user);
+    return res.json(req.user);
 });
 
 module.exports = router;

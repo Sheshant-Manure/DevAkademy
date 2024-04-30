@@ -5,6 +5,7 @@ import LogoSymbol from '../../assets/logosymbol.png';
 import LogoText from '../../assets/logotext.png';
 import SignoutImg from '../../assets/signout.png'
 import ServerURL from '../../config/serverURL'
+import { clearUser } from '../../redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateScreenWidth } from '../../redux/slices/screenWidthSlice';
 
@@ -17,11 +18,21 @@ const Navbar = () => {
   const user = useSelector((state)=>state.user);
 
   useEffect(() => { 
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const signout = urlParams.get('signout');
+    if(signout === 'true') {
+      window.localStorage.removeItem('token');
+      dispatch(clearUser());
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
     const handleResize = () => dispatch(updateScreenWidth());
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+
   }, [dispatch]);
 
   const menuItems = ['Home', 'Courses', 'About', 'Blogs'];
