@@ -2,19 +2,19 @@ a.SignInLink {
   text-decoration: none;
 }
 
-  .gitHubButton {
-    background-color: #ffffff;
-    color: #000000; 
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 0 10px white;
-    transition: all 0.4s ease;
-    z-index: 1;
-  }
+.gitHubButton {
+  background-color: #ffffff;
+  color: #000000; 
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px white;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
 
 .gitHubButton b {
   margin-right: 15px;

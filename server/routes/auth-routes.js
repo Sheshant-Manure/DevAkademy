@@ -19,11 +19,8 @@ router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
         newsletterSubscription: req.user.newsletterSubscription
     }
     
-    // Generating JWT using user data as payload 
-    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' }); // Adjust expiration as needed
-    res.cookie('authToken', token);
-    // Send the token back to the client
-    res.redirect(`${process.env.CLIENT_URL}`);
+    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.redirect(`${process.env.CLIENT_URL}?token=${token}`);
 });
 
 module.exports = router;

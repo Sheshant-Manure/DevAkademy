@@ -23,6 +23,7 @@ const Courses = () => {
     try{
         const response = await fetch(`${ ServerURL }/razorpay/customer/check-customer`, { credentials: 'include' });
         const data = await response.json();
+        console.log(data);
         setExistingCustomer(data.existingCustomer);
         setCustomer({
           id: data.customer.customer.id,
