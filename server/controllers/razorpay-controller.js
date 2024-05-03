@@ -5,7 +5,7 @@ const RazorpayModel = require('../models/razorpay-schema')
 
 module.exports.checkCustomer = async (req, res) => {
     try {
-        const customer = await RazorpayModel.findOne({ user_id: req.user._id });
+        const customer = await RazorpayModel.findOne({ user_id: req.user.id });
         if (!customer) res.json({ existingCustomer: false  });
         else res.json({ existingCustomer: true, customer });
     } catch (err) {

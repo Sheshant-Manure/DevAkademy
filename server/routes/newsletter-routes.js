@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const newsletterController = require('../controllers/newsletter-subscription');
-const { checkAuthentication } = require('./middleware');
+const { validateJWT } = require('./middleware');
 
-router.get('/subscribe', checkAuthentication, newsletterController.subscribe);
-router.get('/unsubscribe', checkAuthentication, newsletterController.unsubscribe);
+router.get('/subscribe', validateJWT, newsletterController.subscribe);
+router.get('/unsubscribe', validateJWT, newsletterController.unsubscribe);
 
 module.exports = router;
