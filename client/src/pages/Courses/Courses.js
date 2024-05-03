@@ -21,7 +21,7 @@ const Courses = () => {
 
   const checkCustomer = async () => {
     try{
-        const response = await fetch(`${ ServerURL }/razorpay/customer/check-customer`, { credentials: 'include' });
+        const response = await fetch(`${ ServerURL }/razorpay/customer/check-customer/?token=${localStorage.getItem('token')}`);
         const data = await response.json();
         console.log(data);
         setExistingCustomer(data.existingCustomer);
@@ -40,8 +40,7 @@ const Courses = () => {
 
   const createRazorpayCustomer = async (e) => {
     e.preventDefault();
-    await fetch(`${ServerURL}/razorpay/customer/create-customer`, {
-      credentials: 'include',
+    await fetch(`${ServerURL}/razorpay/customer/create-customer/?token=${localStorage.getItem('token')}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(
@@ -57,8 +56,7 @@ const Courses = () => {
 
   const createRazorpayOrder = async (e) => {
     e.preventDefault();
-    const orderResponse = await fetch(`${ServerURL}/razorpay/order/create-order`, {
-      credentials: 'include',
+    const orderResponse = await fetch(`${ServerURL}/razorpay/order/create-order/?token=${localStorage.getItem('token')}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -74,8 +72,7 @@ const Courses = () => {
 
   const createQRCode = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${ ServerURL }/razorpay/qrcode/create-qrcode`, {
-      credentials: 'include',
+    const response = await fetch(`${ ServerURL }/razorpay/qrcode/create-qrcode/?token=${localStorage.getItem('token')}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
